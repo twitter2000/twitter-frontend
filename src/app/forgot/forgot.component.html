@@ -1,0 +1,50 @@
+<div *ngIf="this.otpSend === false" class="container">
+  <p>
+    Once you enter Email the click send OTP, you will get OTP to your mail...
+  </p>
+  <input type="email" name="useremail" id="useremail" #useremail /><br /><br />
+  <p *ngIf="this.reStatus === false">{{ this.respon }}</p>
+  <input
+    (click)="verifyEmail({ email: useremail.value })"
+    type="submit"
+    value="Send OTP"
+  />
+  <input type="submit" (click)="cancel()" value="cancel" />
+</div>
+<div *ngIf="this.otpSend === true" class="container">
+  <p>Enter the OTP</p>
+  <input type="number" name="otp" id="otp" #otp />
+  <input
+    (click)="this.forgotUsername({ type: 'username', otp: otp.value })"
+    type="submit"
+    value="verify"
+  />
+  <div *ngIf="this.username !== ''" class="data">
+    <p>{{ this.username }}</p>
+    <input
+      type="password"
+      name="password"
+      id="password"
+      minlength="6"
+      maxlength="10"
+      #password
+    />
+    <input
+      type="submit"
+      [disabled]="password.value.length < 6"
+      (click)="
+        forgotPassword({
+          type: 'password',
+          password: password.value,
+          username: this.username
+        })
+      "
+      value="Change password"
+    />
+    <input type="submit" (click)="cancel()" value="cancel" />
+    <p>
+      Note: If you want you can update the password or else click cancel to
+      login
+    </p>
+  </div>
+</div>

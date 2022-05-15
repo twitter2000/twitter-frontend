@@ -1,0 +1,118 @@
+<header class="site-header clearfix">
+  <app-navbar></app-navbar>
+  <section>
+    <div class="leftside search-board">
+      <h1 class="target">Search</h1>
+      <input type="text" name="query" id="query" class="query" #query /><br />
+      <button (click)="this.getStats(query.value)">
+        <span>Analyze</span>
+        <!-- <span>Process</span> -->
+      </button>
+    </div>
+    <div class="rightside board">
+      <h3>Stats</h3>
+      <div class="values">
+        <table>
+          <tr>
+            <td>Mean</td>
+            <td>
+              <span *ngIf="this.stats != null">
+                {{ this.stats.mean | number: "1.1-4" }}
+              </span>
+              <span *ngIf="this.stats == null">0</span>
+            </td>
+          </tr>
+          <tr>
+            <td>Positive</td>
+            <td>
+              <span *ngIf="this.stats != null">
+                {{ this.stats.max_ | number: "1.1-4" }}
+              </span>
+              <span *ngIf="this.stats == null">0</span>
+            </td>
+          </tr>
+          <tr>
+            <td>Negative</td>
+            <td>
+              <span *ngIf="this.stats != null">
+                {{ this.stats.min_ | number: "1.1-4" }}
+              </span>
+              <span *ngIf="this.stats == null">0</span>
+            </td>
+          </tr>
+          <tr *ngIf="this.stats != null" style="padding-top: 20px;">
+            <td>
+              <textarea
+                name="save-description"
+                id="save-description"
+                cols="30"
+                rows="5"
+                #saveDescription
+              >
+            The mean of sentiment of {{ query.value }} is {{
+                  this.stats.mean | number: "1.1-4"
+                }} and max value in positive is {{
+                  this.stats.max_ | number: "1.1-4"
+                }} and min value in the Negative is {{
+                  this.stats.min_ | number: "1.1-4"
+                }}
+    </textarea
+              >
+            </td>
+            <td>
+              <button
+              [disabled]="this.saved==true"
+                (click)="
+                  this.saveAnalysis(this.data_all,this.stats, query, saveDescription.value)
+                "
+                class="btn"
+              >
+                save
+              </button>
+              <button
+                (click)="reset()"
+                class="btn"
+              >
+                Reset
+              </button>
+            </td>
+          </tr>
+        </table>
+        <!-- <div *ngIf="this.stats != null" class="internal-nav">
+          <a (click)="this.scroll('simplified')" routerLink="/analysis"
+            >simplified</a
+          >
+          <a (click)="this.scroll('piegraph')" routerLink="/analysis"
+            >Classified Graph</a
+          >
+        </div> -->
+      </div>
+      <div ></div>
+    </div>
+  </section>
+</header>
+<div *ngIf="this.stats != null">
+  <div class="simplified" id="simplified">
+    <h2>simplified Graph</h2>
+    <plotly-plot
+      *ngIf="this.stats != null"
+      [data]="this.simplifiedGraph.data"
+      [layout]="this.simplifiedGraph.layout"
+      [useResizeHandler]="true"
+    >
+    </plotly-plot>
+  </div>
+  <div class="piegraph" id="piegraph">
+    <h2>Pie Graph</h2>
+    <plotly-plot
+      *ngIf="this.stats != null"
+      [data]="this.pieGraph.data"
+      [layout]="this.pieGraph.layout"
+    >
+    </plotly-plot>
+  </div>
+  <!-- <div class="save-form">
+    <input type="text" name="save-description" id="save-description" #saveDescription>
+    <button (click)="this.saveAnalysis(this.data_all, query, saveDescription.value)">save</button>
+  </div> -->
+</div>

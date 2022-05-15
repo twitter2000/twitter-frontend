@@ -1,0 +1,34 @@
+<header class="site-header clearfix">
+  <app-navbar *ngIf="this.status == false" ></app-navbar>
+</header>
+<header>
+  <button *ngIf="this.status === true" (click)="this.getSaveList()" class="btn gobotton">Go back</button>
+</header>
+<div *ngIf="this.status === false" class="container" style="margin: 2rem 20rem">
+  <div class="row">
+    <div *ngFor="let data of this.tweet_data.data" class="col-8 mb-5">
+      <div class="row">
+        <div class="column">
+          <div (click)="this.getSaveAnalysis(data)"  class="card">
+            <h5 class="card-title">{{data['saved_query']}}</h5>
+            <p class="card-text">{{data['summary']}}</p>
+          </div>
+          <button (click)="savedDelete(data['id'])" class="btn">delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="this.status === true" class="container" style="margin: 2rem 2rem">
+  <div class="row">
+    <div>
+      <div class="simplified" id="simplified">
+        <h2>simplified Graph</h2>
+        <plotly-plot
+          [data]="this.simplifiedGraph.data"
+          [layout]="this.simplifiedGraph.layout"
+          [useResizeHandler]="true"
+        >
+        </plotly-plot>
+      </div>
+</div>
