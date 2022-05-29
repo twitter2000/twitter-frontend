@@ -40,9 +40,11 @@ export class SaveComponent implements OnInit {
   saveAnalysis(){
     this.status = false
     const server = environment.server
-    const auth = this.authenticate.get('currentUser')
+    const auth = this.authenticate.get('currentUser').data.user
+
+    console.log(auth)
     const body = {'user':auth}
-    this.http.post<any>(server+'save/?type=save',body).subscribe(data=>{
+    this.http.get<any>(server+'save/?type=save'+'&user='+auth).subscribe(data=>{
       this.tweet_data = data
       // console.log(data)
     })
@@ -50,6 +52,7 @@ export class SaveComponent implements OnInit {
 
   getSaveAnalysis(data:any){
     this.data_all = JSON.parse(JSON.stringify(data))
+    console.log(this.data_all)
     this.status = true
     for(let i of this.data_all['saved_data']){
       
@@ -59,11 +62,31 @@ export class SaveComponent implements OnInit {
     console.log(this.data_comments, this.data_compounds)
     this.simplifiedGraph = {
       data:[
-        {x:this.data_comments, y:this.data_compounds,type:'scatter', mode:'markers+lines', marker:{color:'red'}}
+        {
+          x:this.data_comments, y:this.data_compounds,type:'scatter', mode:'markers+lines', marker:{color:'red'}
+        }
       ],
       layout:{
-        width:1500,
-        height:500,
+        title:{
+          text:this.data_all['saved_query'].toUpperCase(),
+          font:{
+            family:'courier New, monospace',
+            size:24,
+            letter_spacing:4,
+          },
+          xref:'paper',
+          x:0.05,
+        },
+        autosize: false,
+        width:1400,
+        height:700,
+        margin: {
+          l: 50,
+          r: 50,
+          b: 300,
+          t: 100,
+          pad: 4
+        },
       }
     }
     this.pieGraph = {
@@ -78,9 +101,12 @@ export class SaveComponent implements OnInit {
         },
       ],
       layout:{
-        height:500,
-        width:500
-      }
+        
+        width: 500,
+        height: 500,
+        
+      },
+   
     }
     this.status = true
   }

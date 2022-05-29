@@ -183,7 +183,7 @@ table td:nth-child(2){
 
 .simplified{
     margin: 5%;
-    width: calc(100%-25%);
+    width: calc(100% - 25%);
     height: 200px;
 }
 
@@ -194,7 +194,7 @@ table td:nth-child(2){
   
 .piegraph{
     margin: 30%;
-    width: calc(100%-50%);
+    width: calc(100% - 50%);
   }
   
 .piegraph h2{

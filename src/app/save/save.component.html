@@ -19,15 +19,13 @@
     </div>
   </div>
 </div>
-<div *ngIf="this.status === true" class="container" style="margin: 2rem 2rem">
+<div *ngIf="this.status === true" >
   <div class="row">
-    <div>
+    <div class="column">
       <div class="simplified" id="simplified">
-        <h2>simplified Graph</h2>
         <plotly-plot
           [data]="this.simplifiedGraph.data"
           [layout]="this.simplifiedGraph.layout"
-          [useResizeHandler]="true"
         >
         </plotly-plot>
       </div>

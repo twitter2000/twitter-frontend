@@ -29,7 +29,6 @@ export class AnalysisComponent implements OnInit {
   constructor(private http:HttpClient,private router:Router, private authenticate:AuthenticateService) { }
 
   ngOnInit(): void {
-
     if(!this.authenticate.islogin){
 
       this.router.navigate(['authorize'])

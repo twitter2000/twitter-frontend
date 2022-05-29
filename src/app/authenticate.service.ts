@@ -13,17 +13,20 @@ export class AuthenticateService {
   constructor(private router :Router) { }
 
   set(key: string, value: string) {
-    localStorage.setItem(key, value);
+    sessionStorage.setItem(key, value);
     this.islogin = true
 }
 
 get(key: string) {
-    return localStorage.getItem(key);
+  console.log(key)
+  const auth = JSON.parse(sessionStorage.getItem(key) || '{}')
+  console.log(auth)
+    return auth;
 }
 
 remove(key: string) {
   this.islogin = false
-  localStorage.removeItem(key);
+  sessionStorage.removeItem(key);
 }
 
 isLogged(){
@@ -40,6 +43,6 @@ isLogged(){
 
 logout(){
   console.log('logout')
-  localStorage.removeItem('currentUser')
+  sessionStorage.removeItem('currentUser')
 }
 }
