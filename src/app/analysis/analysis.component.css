@@ -188,18 +188,22 @@ table td:nth-child(2){
 }
 
 .simplified h2{
-    text-align: center;
+    text-align: left;
     padding-top: 30px;
+    margin-bottom: 10%;
+    font-size: 50px;
   }
   
 .piegraph{
-    margin: 30%;
+    margin: 60% 30% 0% 30%;
     width: calc(100% - 50%);
   }
   
 .piegraph h2{
-      text-align: center;
+      text-align: left;
+      margin-bottom: 10%;
       padding-top: 30px;
+      font-size: 50px;
   }
 
 #save-description{

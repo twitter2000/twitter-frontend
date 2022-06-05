@@ -32,6 +32,7 @@ export class AuthorizationComponent implements OnInit {
     // switch
     this.container = document.querySelector('.container')
     this.status = true;
+    
     // Login 
     this.login = this.formBuilder.group({
       username:['', [Validators.required]],

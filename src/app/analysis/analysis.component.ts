@@ -56,8 +56,26 @@ export class AnalysisComponent implements OnInit {
               {x:this.stats['tweets'], y:this.data_compounds, mode:'markers+lines', marker:{color:'red'}}
             ],
             layout:{
+              title:{
+                text:query.toUpperCase(),
+                font:{
+                  family:'courier New, monospace',
+                  size:24,
+                  letter_spacing:4,
+                },
+                xref:'paper',
+                x:0.05,
+              },
+              autosize: false,
               width:1400,
-              height:500,
+              height:700,
+              margin: {
+                l: 50,
+                r: 50,
+                b: 300,
+                t: 100,
+                pad: 4
+              },
             }
           }
           this.pieGraph = {
@@ -72,8 +90,26 @@ export class AnalysisComponent implements OnInit {
               },
             ],
             layout:{
+              title:{
+                text:query.toUpperCase(),
+                font:{
+                  family:'courier New, monospace',
+                  size:24,
+                  letter_spacing:4,
+                },
+                xref:'paper',
+                x:0.05,
+              },
+              autosize: false,
+              width:500,
               height:500,
-              width:500
+              margin: {
+                l: 50,
+                r: 50,
+                b: 50,
+                t: 50,
+                pad: 4
+              },
             }
           }
         }
