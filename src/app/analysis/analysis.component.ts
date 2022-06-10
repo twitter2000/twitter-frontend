@@ -100,6 +100,9 @@ export class AnalysisComponent implements OnInit {
                 xref:'paper',
                 x:0.05,
               },
+              xaxis:{
+                title:'hello'
+              },
               autosize: false,
               width:500,
               height:500,
