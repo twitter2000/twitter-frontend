@@ -5,10 +5,12 @@ import { AuthorizationComponent } from './authorization/authorization.component'
 import { HomeComponent } from './home/home.component';
 import { SaveComponent } from './save/save.component';
 import { ForgotComponent } from './forgot/forgot.component';
+import { FbAnalysisComponent } from './fb-analysis/fb-analysis.component';
 
 const routes: Routes = [
   {path:'home', component:HomeComponent},
   {path:'analysis', component:AnalysisComponent},
+  {path:'fbanalysis', component:FbAnalysisComponent},
   {path:'authorize', component:AuthorizationComponent},
   {path:'save', component:SaveComponent},
   {path:'forgot',component:ForgotComponent},

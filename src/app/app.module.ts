@@ -16,6 +16,7 @@ import { CommonModule } from '@angular/common';
 import * as PlotlyJS from 'plotly.js-dist-min';
 import { PlotlyModule } from 'angular-plotly.js';
 import { ForgotComponent } from './forgot/forgot.component';
+import { FbAnalysisComponent } from './fb-analysis/fb-analysis.component';
 
 PlotlyModule.plotlyjs = PlotlyJS
 
@@ -28,6 +29,7 @@ PlotlyModule.plotlyjs = PlotlyJS
     HomeComponent,
     NavbarComponent,
     ForgotComponent,
+    FbAnalysisComponent,
   ],
   imports: [
     BrowserModule,
